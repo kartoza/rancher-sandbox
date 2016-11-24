@@ -1,6 +1,12 @@
 nginx:
   image: nginx
   hostname: nginx
-  ports:
-    - "0.0.0.0:80:80"
 
+nginxloadbalancer:
+  ports:
+  - 80:80
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - nginx:nginx
+  stdin_open: true
